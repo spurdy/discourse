@@ -175,7 +175,9 @@ body, table, td, th, h1, h2, h3 {font-family: Helvetica, Arial, sans-serif !impo
         </h2>
       </th>
       <th class="small-3 large-3 columns last" style="color:#0a0a0a;line-height:1.3;margin:0;padding:0 16px 16px 8px;text-align:center;width:20%">
-        <img src="http://rewphus.github.io/assets/img/markdown.png" style="-ms-interpolation-mode:bicubic;clear:both;display:block;float:none;margin:auto;max-height:80px;max-width:100%;outline:0;text-align:center;text-decoration:none;width:auto" align="center" class="float-center">
+        <% if t.image_url.present? %>
+          <img src="<%= Discourse.base_url_no_prefix + t.image_url -%>" style="-ms-interpolation-mode:bicubic;clear:both;display:block;float:none;margin:auto;max-height:80px;max-width:100%;outline:0;text-align:center;text-decoration:none;width:auto" align="center" class="float-center">
+        <% end %>
       </th>
     </tr>
   </tbody>
@@ -185,7 +187,7 @@ body, table, td, th, h1, h2, h3 {font-family: Helvetica, Arial, sans-serif !impo
   <tbody>
     <tr>
       <th class="small-3 large-1 columns first" style="color:#0a0a0a;line-height:1.3;margin:0 auto;padding:0 8px 16px 16px;text-align:center;width:10%">
-        <img src="http://rewphus.github.io/assets/img/CodingHorror.png" style="-ms-interpolation-mode:bicubic;border-radius:50%;clear:both;display:block;float:none;height:50px;width:50px;margin:0;max-width:100%;outline:0;text-align:center;text-decoration:none;" align="center" class="float-center">
+        <img src="<%= t.user.small_avatar_url -%>" style="-ms-interpolation-mode:bicubic;border-radius:50%;clear:both;display:block;float:none;height:50px;width:50px;margin:0;max-width:100%;outline:0;text-align:center;text-decoration:none;" align="center" class="float-center">
       </th>
       <th class="small-9 large-10 columns last" style="color:#0a0a0a;padding:0 16px 16px 8px;text-align:left;width:90%">
         <h6 style="color:inherit;font-size:18px;font-weight:400;line-height:1.3;margin:0;padding:0;word-wrap:normal;"><%= t.user.try(:username) -%></h6>
@@ -223,10 +225,11 @@ body, table, td, th, h1, h2, h3 {font-family: Helvetica, Arial, sans-serif !impo
         <p style="color:#8f8f8f;float:left;line-height:1.3;margin:0;margin-bottom:10px;padding:0;text-align:left"><%= t.posts_count - 1 -%></p>
       </th>
       <th class="small-6 large-3 columns" style="padding:0 8px 16px 8px;text-align:left;width:20%">
-        <img src="http://rewphus.github.io/assets/img/Sam_small.png" style="-ms-interpolation-mode:bicubic;border-radius:50%;clear:both;display:inline-block;height:20px;max-width:100%;outline:0;text-decoration:none;width:20px">
-        <img src="http://rewphus.github.io/assets/img/CodingHorror_small.png" style="-ms-interpolation-mode:bicubic;border-radius:50%;clear:both;display:inline-block;height:20px;max-width:100%;outline:0;text-decoration:none;width:20px">
-        <img src="http://rewphus.github.io/assets/img/Sam_small.png" style="-ms-interpolation-mode:bicubic;border-radius:50%;clear:both;display:inline-block;height:20px;max-width:100%;outline:0;text-decoration:none;width:20px">
-        <img src="http://rewphus.github.io/assets/img/CodingHorror_small.png" style="-ms-interpolation-mode:bicubic;border-radius:50%;clear:both;display:inline-block;height:20px;max-width:100%;outline:0;text-decoration:none;width:20px">
+        <% t.posters_summary.each do |ps| %>
+          <% if ps.user %>
+            <img src="<%= ps.user.small_avatar_url -%>" style="-ms-interpolation-mode:bicubic;border-radius:50%;clear:both;display:inline-block;height:20px;max-width:100%;outline:0;text-decoration:none;width:20px">
+          <% end %>
+        <% end %>
       </th>
       <th class="small-4 large-3 columns" style="padding:0 8px 16px 8px;text-align:left;width:30%">
         <a href="<%= Discourse.base_url_no_prefix + t.relative_url %>" style="color:#2199e8;float:right;font-weight:400;line-height:1.3;margin:0;padding:0;text-align:left;text-decoration:none">
@@ -287,118 +290,127 @@ body, table, td, th, h1, h2, h3 {font-family: Helvetica, Arial, sans-serif !impo
           <tr>
             <td style="border-spacing:0;border-collapse:collapse!important;margin:0;padding:0;text-align:left;vertical-align:top;">
 
-              <!--   Beginning of Popular Post   -->
-              <table class="row" style="width:100%;background:#fefefe;border-spacing:0;padding:0;text-align:left;vertical-align:top;">
-                <tbody>
-                  <tr>
-                    <td class="small-12 large-12 columns first last" style="margin:0 auto;padding:16px;text-align:left;width:764px">
-                      <p style="color:#0a0a0a;line-height:1.3;margin:0;margin-bottom:10px;padding:0;text-align:left; font-weight:200;">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                        Delectus velit eveniet est odit doloribus minus,
-                        reprehenderit vitae excepturi numquam repellendus
-                        natus consectetur dolorem. Quam, voluptatem non aperiam
-                        rem voluptas sequi?
-                      </p>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+<% @popular_posts.each do |post| %>
 
-              <table style="border-spacing:0;background-color:#f3f3f3;padding:0;position:relative;text-align:left;vertical-align:top;width:100%" class="row">
-                <tbody>
-                  <tr>
-                    <td class="large-offset-1 small-11 large-12 columns first last" style="border-spacing:0;padding:0;color:#0a0a0a;float:right;line-height:1.3;margin:0 auto;padding:0 16px 16px 81px;text-align:left;width:764px">
-                      <img src="http://rewphus.github.io/assets/img/right_triangle.png" style="-ms-interpolation-mode:bicubic;clear:both;display:block;height:20px;max-width:100%;outline:0;text-decoration:none;width:20px">
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+<!--   Beginning of Popular Post   -->
+<table class="row" style="width:100%;background:#fefefe;border-spacing:0;padding:0;text-align:left;vertical-align:top;">
+  <tbody>
+    <tr>
+      <td class="small-12 large-12 columns first last" style="margin:0 auto;padding:16px;text-align:left;width:764px">
+        <p style="color:#0a0a0a;line-height:1.3;margin:0;margin-bottom:10px;padding:0;text-align:left; font-weight:200;">
+          <%= email_excerpt(post.cooked) %>
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-              <table style="background-color:#f3f3f3;padding:0;position:relative;text-align:left;vertical-align:top;width:100%" class="row">
-                <tbody>
-                  <tr>
-                    <th class="small-3 large-1 columns first" style="color:#0a0a0a;line-height:1.3;margin:0 auto;padding:0;padding-bottom:16px;padding-left:16px;padding-right:8px;text-align:left;width:49px">
-                      <center style="min-width:17px;width:100%">
-                        <img src="http://rewphus.github.io/assets/img/CodingHorror.png" style="-ms-interpolation-mode:bicubic;border-radius:50%;clear:both;display:block;float:none;height:50px;margin:0 auto;max-width:100%;outline:0;text-align:center;text-decoration:none;width:50px" align="center" class="float-center">
-                      </center>
-                    </th>
-                    <th class="small-8 large-2 columns" style="color:#0a0a0a;line-height:1.3;margin:0 auto;padding:0;padding-bottom:16px;padding-left:8px;padding-right:8px;text-align:left;width:114px">
-                      <h6 style="color:inherit;font-size:18px;font-weight:400;line-height:1.3;margin:0;margin-bottom:0;padding:0;text-align:left;word-wrap:normal">Username</h6>
-                      <p style="color:#8f8f8f;line-height:1.3;margin:0;margin-bottom:10px;padding:0;text-align:left">Full Name</p>
-                    </th>
-                    <th class="small-6 large-5 columns" style="color:#0a0a0a;line-height:1.3;margin:0 auto;padding:0;padding-bottom:16px;padding-left:8px;padding-right:8px;text-align:left;width:309px">
-                      <p style="color:#8f8f8f;line-height:1.3;margin:0;margin-bottom:10px;padding:0;text-align:left">From <a style="color:#2199e8;font-weight:400;line-height:1.3;margin:0;padding:0;text-align:left;text-decoration:none">GPL or Free Software licence for forum content</a></p>
-                    </th>
-                    <th class="small-6 large-3 columns last" style="line-height:1.3;margin:0 auto;padding:0;padding-bottom:16px;padding-left:8px;padding-right:16px;text-align:right;width:179px">
-                      <a href="#" style="width:100%;background-color:#2199e8;color:#fff;text-decoration:none;padding:8px 16px;white-space: nowrap;">
-                        Join the discussion
-                      </a>
-                    </th>
-                  </tr>
-                </tbody>
-              </table>
+<table style="border-spacing:0;background-color:#f3f3f3;padding:0;position:relative;text-align:left;vertical-align:top;width:100%" class="row">
+  <tbody>
+    <tr>
+      <td class="large-offset-1 small-11 large-12 columns first last" style="border-spacing:0;padding:0;color:#0a0a0a;float:right;line-height:1.3;margin:0 auto;padding:0 16px 16px 81px;text-align:left;width:764px">
+        <img src="http://rewphus.github.io/assets/img/right_triangle.png" style="-ms-interpolation-mode:bicubic;clear:both;display:block;height:20px;max-width:100%;outline:0;text-decoration:none;width:20px">
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-              <div style="background-color:#f3f3f3">
-                <table class="spacer" style="padding:0;text-align:left;vertical-align:top;width:100%">
-                  <tbody>
-                    <tr>
-                      <td height="40px" style="-moz-hyphens:auto;-webkit-hyphens:auto;border-collapse:collapse!important;color:#0a0a0a;font-size:40px;font-weight:400;hyphens:auto;line-height:40px;margin:0;mso-line-height-rule:exactly;padding:0;text-align:left;vertical-align:top;word-wrap:normal">&#xA0;</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <!--   End of Popular Post   -->
+<table style="background-color:#f3f3f3;padding:0;position:relative;text-align:left;vertical-align:top;width:100%" class="row">
+  <tbody>
+    <tr>
+      <th class="small-3 large-1 columns first" style="color:#0a0a0a;line-height:1.3;margin:0 auto;padding:0;padding-bottom:16px;padding-left:16px;padding-right:8px;text-align:left;width:49px">
+        <center style="min-width:17px;width:100%">
+          <img src="<%= post.user.small_avatar_url -%>" style="-ms-interpolation-mode:bicubic;border-radius:50%;clear:both;display:block;float:none;height:50px;margin:0 auto;max-width:100%;outline:0;text-align:center;text-decoration:none;width:50px" align="center" class="float-center">
+        </center>
+      </th>
+      <th class="small-8 large-2 columns" style="color:#0a0a0a;line-height:1.3;margin:0 auto;padding:0;padding-bottom:16px;padding-left:8px;padding-right:8px;text-align:left;width:114px">
+        <h6 style="color:inherit;font-size:18px;font-weight:400;line-height:1.3;margin:0;margin-bottom:0;padding:0;text-align:left;word-wrap:normal"><%= post.user.username -%></h6>
+        <p style="color:#8f8f8f;line-height:1.3;margin:0;margin-bottom:10px;padding:0;text-align:left"><%= post.user.name -%></p>
+      </th>
+      <th class="small-6 large-5 columns" style="color:#0a0a0a;line-height:1.3;margin:0 auto;padding:0;padding-bottom:16px;padding-left:8px;padding-right:8px;text-align:left;width:309px">
+        <p style="color:#8f8f8f;line-height:1.3;margin:0;margin-bottom:10px;padding:0;text-align:left">
+          From <a href="<%= post.full_url -%>" style="color:#2199e8;font-weight:400;line-height:1.3;margin:0;padding:0;text-align:left;text-decoration:none"><%= post.topic.title -%></a>
+        </p>
+      </th>
+      <th class="small-6 large-3 columns last" style="line-height:1.3;margin:0 auto;padding:0;padding-bottom:16px;padding-left:8px;padding-right:16px;text-align:right;width:179px">
+        <a href="<%= post.full_url -%>" style="width:100%;background-color:#2199e8;color:#fff;text-decoration:none;padding:8px 16px;white-space: nowrap;">
+          Join the discussion
+        </a>
+      </th>
+    </tr>
+  </tbody>
+</table>
 
+<div style="background-color:#f3f3f3">
+  <table class="spacer" style="padding:0;text-align:left;vertical-align:top;width:100%">
+    <tbody><tr><td height="40px" style="-moz-hyphens:auto;-webkit-hyphens:auto;border-collapse:collapse!important;color:#0a0a0a;font-size:40px;font-weight:400;hyphens:auto;line-height:40px;margin:0;mso-line-height-rule:exactly;padding:0;text-align:left;vertical-align:top;word-wrap:normal">&#xA0;</td></tr></tbody>
+  </table>
+</div>
+<!--   End of Popular Post   -->
 
-              <table class="spacer" style="padding:0;width:100%">
-                <tbody><tr><td height="80px" style="border-collapse:collapse!important;line-height:80px;margin:0;mso-line-height-rule:exactly;padding:0;">&#xA0;</td></tr></tbody>
-              </table>
-              <h1 class="text-center" style="color:inherit;font-size:34px;font-weight:400;line-height:1.3;margin:0;margin-bottom:10px;padding:0;text-align:center;word-wrap:normal">
-                New in topics and categories you follow
-              </h1>
-              <table class="spacer" style="padding:0;width:100%">
-                <tbody><tr><td height="40px" style="border-collapse:collapse!important;line-height:40px;margin:0;padding:0;">&#xA0;</td></tr></tbody>
-              </table>
+<% end %>
 
 
+<% if @other_new_for_you.present? %>
+
+<table class="spacer" style="padding:0;width:100%">
+  <tbody><tr><td height="80px" style="border-collapse:collapse!important;line-height:80px;margin:0;mso-line-height-rule:exactly;padding:0;">&#xA0;</td></tr></tbody>
+</table>
+<h1 class="text-center" style="color:inherit;font-size:34px;font-weight:400;line-height:1.3;margin:0;margin-bottom:10px;padding:0;text-align:center;word-wrap:normal">
+  New in topics and categories you follow
+</h1>
+<table class="spacer" style="padding:0;width:100%">
+  <tbody><tr><td height="40px" style="border-collapse:collapse!important;line-height:40px;margin:0;padding:0;">&#xA0;</td></tr></tbody>
+</table>
+
+<% end %>
 
 
-              <!--   Begin new topic  -->
-              <table class="row" style="padding:0;position:relative;text-align:left;vertical-align:top;width:100%">
-                <tbody>
-                  <tr style="vertical-align:top;">
-                    <th class="small-2 large-1 columns first" style="padding:20px 8px 0 16px;text-align:left;width:49px">
-                      <p style="background:#2F70AC;border-radius:50%;color:#fff;height:30px;line-height:30px;margin:0 0 10px 0;padding:0;text-align:center;width:30px">3</p>
-                    </th>
-                    <th class="small-6 large-6 columns" style="padding:24px 8px 16px 8px;text-align:left;">
-                      <a href="#" style="color:#2F70AC;font-weight:400;line-height:1.3;margin:0;padding:0;text-decoration:none">
-                        <strong>Running a simple test</strong>
-                      </a>
-                    </th>
-                    <th class="small-4 large-2 columns" style="padding:26px 8px 16px 8px;text-align:left;width:114px">
-                      <p style="color:#0a0a0a;line-height:1.3;margin:0 0 10px 0;padding:0;text-align:left">Dev</p>
-                    </th>
-                    <th class="small-6 large-4 columns" style="padding:24px 8px 16px 8px;text-align:left;width:244px">
-                      <img src="http://rewphus.github.io/assets/img/CodingHorror_small.png" style="-ms-interpolation-mode:bicubic;border-radius:50%;clear:both;display:inline-block;height:20px;max-width:100%;outline:0;text-decoration:none;width:20px">
-                      <img src="http://rewphus.github.io/assets/img/Sam_small.png" style="-ms-interpolation-mode:bicubic;border-radius:50%;clear:both;display:inline-block;height:20px;max-width:100%;outline:0;text-decoration:none;width:20px">
-                      <img src="http://rewphus.github.io/assets/img/CodingHorror_small.png" style="-ms-interpolation-mode:bicubic;border-radius:50%;clear:both;display:inline-block;height:20px;max-width:100%;outline:0;text-decoration:none;width:20px">
-                      <img src="http://rewphus.github.io/assets/img/Sam_small.png" style="-ms-interpolation-mode:bicubic;border-radius:50%;clear:both;display:inline-block;height:20px;max-width:100%;outline:0;text-decoration:none;width:20px">
-                    </th>
-                    <th class="small-3 large-1 columns" style="padding:24px 8px 16px 8px;text-align:left;width:49px">
-                      <img src="http://rewphus.github.io/assets/img/heart.png" style="-ms-interpolation-mode:bicubic;clear:both;display:inline-block;height:20px;max-width:100%;opacity:.4;outline:0;text-decoration:none;width:auto">
-                      <p style="color:#8f8f8f;float:right;line-height:1.3;margin:0 0 10px 0;padding:0;text-align:left">20</p>
-                    </th>
-                    <th class="small-3 large-1 columns last" style="padding:24px 16px 16px 8px;text-align:left;width:49px">
-                      <img src="http://rewphus.github.io/assets/img/comment.png" style="-ms-interpolation-mode:bicubic;clear:both;display:inline-block;height:20px;max-width:100%;opacity:.4;outline:0;text-decoration:none;width:auto">
-                      <p style="color:#8f8f8f;float:right;line-height:1.3;margin:0 0 10px 0;padding:0;text-align:left">11</p>
-                    </th>
-                  </tr>
-                </tbody>
-              </table>
+<% @other_new_for_you.each do |t| %>
 
-              <table class="spacer" style="padding:0;width:100%">
-                <tbody><tr><td height="10px" style="border-collapse:collapse!important;line-height:10px;margin:0;mso-line-height-rule:exactly;padding:0;">&#xA0;</td></tr></tbody>
-              </table>
-              <!--   End new topic  -->
+<!--   Begin new topic  -->
+<table class="row" style="padding:0;position:relative;text-align:left;vertical-align:top;width:100%">
+  <tbody>
+    <tr style="vertical-align:top;">
+      <th class="small-2 large-1 columns first" style="padding:20px 8px 0 16px;text-align:left;width:49px">
+        <p style="background:#2F70AC;border-radius:50%;color:#fff;height:30px;line-height:30px;margin:0 0 10px 0;padding:0;text-align:center;width:30px">
+          <%= t.user_data ? (t.highest_post_number - t.user_data.last_read_post_number) : t.highest_post_number %>
+        </p>
+      </th>
+      <th class="small-6 large-6 columns" style="padding:24px 8px 16px 8px;text-align:left;">
+        <a href="#" style="color:#2F70AC;font-weight:400;line-height:1.3;margin:0;padding:0;text-decoration:none">
+          <strong><%= t.title -%></strong>
+        </a>
+      </th>
+      <th class="small-4 large-2 columns" style="padding:26px 8px 16px 8px;text-align:left;width:114px">
+        <p style="color:#0a0a0a;line-height:1.3;margin:0 0 10px 0;padding:0;text-align:left"><%= t.category.try(:name) -%></p>
+      </th>
+      <th class="small-6 large-4 columns" style="padding:24px 8px 16px 8px;text-align:left;width:244px">
+        <% t.posters_summary.each do |ps| %>
+          <% if ps.user %>
+            <img src="<%= ps.user.small_avatar_url -%>" style="-ms-interpolation-mode:bicubic;border-radius:50%;clear:both;display:inline-block;height:20px;max-width:100%;outline:0;text-decoration:none;width:20px">
+          <% end %>
+        <% end %>
+      </th>
+      <th class="small-3 large-1 columns" style="padding:24px 8px 16px 8px;text-align:left;width:49px">
+        <img src="http://rewphus.github.io/assets/img/heart.png" style="-ms-interpolation-mode:bicubic;clear:both;display:inline-block;height:20px;max-width:100%;opacity:.4;outline:0;text-decoration:none;width:auto">
+        <p style="color:#8f8f8f;float:right;line-height:1.3;margin:0 0 10px 0;padding:0;text-align:left"><%= t.like_count -%></p>
+      </th>
+      <th class="small-3 large-1 columns last" style="padding:24px 16px 16px 8px;text-align:left;width:49px">
+        <img src="http://rewphus.github.io/assets/img/comment.png" style="-ms-interpolation-mode:bicubic;clear:both;display:inline-block;height:20px;max-width:100%;opacity:.4;outline:0;text-decoration:none;width:auto">
+        <p style="color:#8f8f8f;float:right;line-height:1.3;margin:0 0 10px 0;padding:0;text-align:left"><%= t.posts_count - 1 -%></p>
+      </th>
+    </tr>
+  </tbody>
+</table>
+
+<table class="spacer" style="padding:0;width:100%">
+  <tbody><tr><td height="10px" style="border-collapse:collapse!important;line-height:10px;margin:0;mso-line-height-rule:exactly;padding:0;">&#xA0;</td></tr></tbody>
+</table>
+<!--   End new topic  -->
+
+<% end %>
+
             </td>
           </tr>
         </tbody>
@@ -568,6 +580,17 @@ body, table, td, th, h1, h2, h3 {font-family: Helvetica, Arial, sans-serif !impo
     }
   }
 </style>
+
+
+<%= digest_custom_html("above_footer") %>
+
+<div class='footer'>
+  <%=raw(t 'user_notifications.digest.unsubscribe',
+           site_link: html_site_link(@anchor_color),
+           unsubscribe_link: link_to(t('user_notifications.digest.click_here'), email_unsubscribe_url(host: Discourse.base_url_no_prefix, key: @unsubscribe_key), {:style=>"color: ##{@anchor_color}"}))  %>
+</div>
+
+<%= digest_custom_html("below_footer") %>
 
 <!-- prevent Gmail on iOS font size manipulation -->
 <div style="display:none;white-space:nowrap;font:15px courier;line-height:0">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;

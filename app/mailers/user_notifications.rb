@@ -103,12 +103,14 @@ class UserNotifications < ActionMailer::Base
     @unread_messages = user.unread_private_messages
     @unread_notifications = user.unread_notifications
 
-    @popular_topics = Topic.for_digest(user, min_date, limit: SiteSetting.digest_topics, top_order: true).to_a
+    topics_for_digest = Topic.for_digest(user, min_date, limit: SiteSetting.digest_topics + 3, top_order: true).to_a
 
-    # popular posts
+    @popular_topics = topics_for_digest[0,SiteSetting.digest_topics]
+    @popular_posts = Post.where("post_number > ?", 1).where("score > ?", 5.0).order("score DESC").limit(3)
+    @other_new_for_you = topics_for_digest.size > SiteSetting.digest_topics ? topics_for_digest[SiteSetting.digest_topics..-1] : []
 
-    # new that you follow
-
+    topic_lookup = TopicUser.lookup_for(user, @other_new_for_you)
+    @other_new_for_you.each { |t| t.user_data = topic_lookup[t.id] }
 
     if @popular_topics.present?
       opts = {
