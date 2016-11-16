@@ -5,7 +5,7 @@
     <%= raw(t 'user_notifications.digest.custom.html.header') %>
   </td>
   <%- else %>
-  <td style="padding: 10px 10px; background-color: #<%= @header_color %>;">
+  <td style="padding: 10px 10px; background-color: #<%= @header_bgcolor %>;">
     <a href="<%= Discourse.base_url %>" style='color: #<%= @anchor_color %>'>
     <%- if logo_url.blank? %>
       <%= SiteSetting.title %>

@@ -18,8 +18,8 @@ body, table, td, th, h1, h2, h3 {font-family: Helvetica, Arial, sans-serif !impo
   <%= @preheader_text %>
 </span>
 
-<header style="background-color:#f3f3f3;">
-  <a href="<%= Discourse.base_url %>" style='color:#0a0a0a;'>
+<header style="background-color:#<%= @header_bgcolor -%>;">
+  <a href="<%= Discourse.base_url %>" style='color:#<%= @header_color -%>;'>
   <%- if logo_url.blank? %>
     <%= SiteSetting.title %>
   <%- else %>

@@ -97,10 +97,9 @@ class UserNotifications < ActionMailer::Base
     build_summary_for(user)
     min_date = opts[:since] || user.last_emailed_at || user.last_seen_at || 1.month.ago
 
-    # TODO: new site setting to customize this:
-    @preheader_text = I18n.t('user_notifications.digest.preheader', last_seen_at: @last_seen_at)
-
     @last_seen_at = short_date(user.last_seen_at || user.created_at)
+
+    @preheader_text = I18n.t('user_notifications.digest.preheader', last_seen_at: @last_seen_at)
 
     @new_topics_count = Topic.new_since_last_seen(user, min_date).count
     @unread_messages = user.unread_private_messages
@@ -455,7 +454,8 @@ class UserNotifications < ActionMailer::Base
     @date            = short_date(Time.now)
     @base_url        = Discourse.base_url
     @site_name       = SiteSetting.email_prefix.presence || SiteSetting.title
-    @header_color    = ColorScheme.hex_for_name('header_background')
+    @header_color    = ColorScheme.hex_for_name('header_primary')
+    @header_bgcolor  = ColorScheme.hex_for_name('header_background')
     @anchor_color    = ColorScheme.hex_for_name('tertiary')
     @markdown_linker = MarkdownLinker.new(@base_url)
     @unsubscribe_key = UnsubscribeKey.create_key_for(@user, "digest")
