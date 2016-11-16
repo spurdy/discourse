@@ -280,6 +280,8 @@ body, table, td, th, h1, h2, h3 {font-family: Helvetica, Arial, sans-serif !impo
   </tr>
 </table>
 
+<% if @popular_posts.present? %>
+
 <table style="background-color: #f3f3f3; width: 100%;">
   <tr>
     <td>
@@ -358,6 +360,9 @@ body, table, td, th, h1, h2, h3 {font-family: Helvetica, Arial, sans-serif !impo
 <!--   End of Popular Post   -->
 
 <% end %>
+
+<% end %>
+
 
 
 <% if @other_new_for_you.present? %>
