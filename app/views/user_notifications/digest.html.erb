@@ -220,11 +220,11 @@ body, table, td, th, h1, h2, h3 {font-family: Helvetica, Arial, sans-serif !impo
   <tbody>
     <tr style="vertical-align:top;">
       <th class="small-3 large-1 columns first" style="padding:0 8px 16px 16px;text-align:left;width:10%">
-        <img src="<%= asset_path '/images/emails/heart.png' -%>" style="-ms-interpolation-mode:bicubic;clear:both;display:inline-block;float:left;height:20px;margin-right:10px;max-width:100%;opacity:.4;outline:0;text-decoration:none;width:auto">
+        <img src="<%= email_image_url 'heart.png' -%>" style="-ms-interpolation-mode:bicubic;clear:both;display:inline-block;float:left;height:20px;margin-right:10px;max-width:100%;opacity:.4;outline:0;text-decoration:none;width:auto">
         <p style="color:#8f8f8f;float:left;line-height:1.3;margin:0;margin-bottom:10px;padding:0;text-align:left"><%= t.like_count -%></p>
       </th>
       <th class="small-3 large-1 columns" style="padding:0 8px 16px 8px;text-align:left;width:10%">
-        <img src="<%= asset_path '/images/emails/comment.png' -%>" style="-ms-interpolation-mode:bicubic;clear:none;display:inline-block;float:left;height:20px;margin-right:10px;max-width:100%;opacity:.4;outline:0;text-decoration:none;width:auto">
+        <img src="<%= email_image_url 'comment.png' -%>" style="-ms-interpolation-mode:bicubic;clear:none;display:inline-block;float:left;height:20px;margin-right:10px;max-width:100%;opacity:.4;outline:0;text-decoration:none;width:auto">
         <p style="color:#8f8f8f;float:left;line-height:1.3;margin:0;margin-bottom:10px;padding:0;text-align:left"><%= t.posts_count - 1 -%></p>
       </th>
       <th class="small-6 large-3 columns" style="padding:0 8px 16px 8px;text-align:left;width:20%">
@@ -317,7 +317,7 @@ body, table, td, th, h1, h2, h3 {font-family: Helvetica, Arial, sans-serif !impo
   <tbody>
     <tr>
       <td class="large-offset-1 small-11 large-12 columns first last" style="border-spacing:0;padding:0;color:#0a0a0a;float:right;line-height:1.3;margin:0 auto;padding:0 16px 16px 81px;text-align:left;width:764px">
-        <img src="<%= asset_path '/images/emails/right_triangle.png' -%>" style="-ms-interpolation-mode:bicubic;clear:both;display:block;height:20px;max-width:100%;outline:0;text-decoration:none;width:20px">
+        <img src="<%= email_image_url 'right_triangle.png' -%>" style="-ms-interpolation-mode:bicubic;clear:both;display:block;height:20px;max-width:100%;outline:0;text-decoration:none;width:20px">
       </td>
     </tr>
   </tbody>
@@ -403,11 +403,11 @@ body, table, td, th, h1, h2, h3 {font-family: Helvetica, Arial, sans-serif !impo
         <% end %>
       </th>
       <th class="small-3 large-1 columns" style="padding:24px 8px 16px 8px;text-align:left;width:49px">
-        <img src="<%= asset_path '/images/emails/heart.png' -%>" style="-ms-interpolation-mode:bicubic;clear:both;display:inline-block;height:20px;max-width:100%;opacity:.4;outline:0;text-decoration:none;width:auto">
+        <img src="<%= email_image_url 'heart.png' -%>" style="-ms-interpolation-mode:bicubic;clear:both;display:inline-block;height:20px;max-width:100%;opacity:.4;outline:0;text-decoration:none;width:auto">
         <p style="color:#8f8f8f;float:right;line-height:1.3;margin:0 0 10px 0;padding:0;text-align:left"><%= t.like_count -%></p>
       </th>
       <th class="small-3 large-1 columns last" style="padding:24px 16px 16px 8px;text-align:left;width:49px">
-        <img src="<%= asset_path '/images/emails/comment.png' -%>" style="-ms-interpolation-mode:bicubic;clear:both;display:inline-block;height:20px;max-width:100%;opacity:.4;outline:0;text-decoration:none;width:auto">
+        <img src="<%= email_image_url 'comment.png' -%>" style="-ms-interpolation-mode:bicubic;clear:both;display:inline-block;height:20px;max-width:100%;opacity:.4;outline:0;text-decoration:none;width:auto">
         <p style="color:#8f8f8f;float:right;line-height:1.3;margin:0 0 10px 0;padding:0;text-align:left"><%= t.posts_count - 1 -%></p>
       </th>
     </tr>
