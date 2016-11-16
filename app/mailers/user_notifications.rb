@@ -97,7 +97,10 @@ class UserNotifications < ActionMailer::Base
     build_summary_for(user)
     min_date = opts[:since] || user.last_emailed_at || user.last_seen_at || 1.month.ago
 
-    # counts at top of digest
+    # TODO: new site setting to customize this:
+    @preheader_text = I18n.t('user_notifications.digest.why', last_seen_at: @last_seen_at)
+
+    @last_seen_at = short_date(user.last_seen_at || user.created_at)
 
     @new_topics_count = Topic.new_since_last_seen(user, min_date).count
     @unread_messages = user.unread_private_messages
