@@ -98,7 +98,7 @@ class UserNotifications < ActionMailer::Base
     min_date = opts[:since] || user.last_emailed_at || user.last_seen_at || 1.month.ago
 
     # TODO: new site setting to customize this:
-    @preheader_text = I18n.t('user_notifications.digest.why', last_seen_at: @last_seen_at)
+    @preheader_text = I18n.t('user_notifications.digest.preheader', last_seen_at: @last_seen_at)
 
     @last_seen_at = short_date(user.last_seen_at || user.created_at)
 
@@ -109,7 +109,7 @@ class UserNotifications < ActionMailer::Base
     topics_for_digest = Topic.for_digest(user, min_date, limit: SiteSetting.digest_topics + 3, top_order: true).to_a
 
     @popular_topics = topics_for_digest[0,SiteSetting.digest_topics]
-    @popular_posts = Post.where("post_number > ?", 1).where("score > ?", 5.0).order("score DESC").limit(3)
+    @popular_posts = SiteSetting.digest_posts > 0 ? Post.where("post_number > ?", 1).where("score > ?", 5.0).order("score DESC").limit(SiteSetting.digest_posts) : []
     @other_new_for_you = topics_for_digest.size > SiteSetting.digest_topics ? topics_for_digest[SiteSetting.digest_topics..-1] : []
 
     topic_lookup = TopicUser.lookup_for(user, @other_new_for_you)
