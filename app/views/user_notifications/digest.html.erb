@@ -1,7 +1,7 @@
- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
- <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 
- <head>
+<head>
   <meta http-equiv="Content-type" name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width">
   <title></title>
 </head>
@@ -19,7 +19,7 @@ body, table, td, th, h1, h2, h3 {font-family: Helvetica, Arial, sans-serif !impo
 </span>
 
 <header style="background-color:#<%= @header_bgcolor -%>;padding:30px;">
-  <a href="<%= Discourse.base_url %>" style='color:#<%= @header_color -%>;font-size:28px;'>
+  <a href="<%= Discourse.base_url %>" style="color:#<%= @header_color -%>;font-size:28px;text-decoration:none;">
   <%- if logo_url.blank? %>
     <center><%= SiteSetting.title %></center>
   <%- else %>
@@ -296,11 +296,8 @@ body, table, td, th, h1, h2, h3 {font-family: Helvetica, Arial, sans-serif !impo
 
 <table class="body" style="width:100%;background:#f3f3f3;border-spacing:0;border-collapse:collapse!important;font-family:Helvetica,Arial,sans-serif;font-size:16px;font-weight:200;line-height:1.3;padding:0;text-align:left;vertical-align:top;">
   <tr>
-    <td class="center" align="center" valign="top" style="border-collapse:collapse!important;line-height:1.3;margin:0;padding:0;text-align:left;vertical-align:top;">
-      <table align="center" class="container" style="width:90%;border-spacing:0;border-collapse:collapse!important;margin:0 auto;padding:0;text-align:center;vertical-align:top;">
-        <tbody>
-          <tr>
-            <td style="border-spacing:0;border-collapse:collapse!important;margin:0;padding:0;text-align:left;vertical-align:top;">
+    <td style="width:5%;padding:0;">&nbsp;</td>
+    <td class="center" align="center" valign="top" style="width:90%;border-collapse:collapse!important;line-height:1.3;margin:0;padding:0;text-align:left;vertical-align:top;">
 
 <% @popular_posts.each do |post| %>
 
@@ -430,11 +427,9 @@ body, table, td, th, h1, h2, h3 {font-family: Helvetica, Arial, sans-serif !impo
 
 <%= digest_custom_html("below_popular_topics") %>
 
-            </td>
-          </tr>
-        </tbody>
-      </table>
+
     </td>
+    <td style="width:5%;padding:0;">&nbsp;</td>
   </tr>
 </table>
 <style>
@@ -545,57 +540,46 @@ body, table, td, th, h1, h2, h3 {font-family: Helvetica, Arial, sans-serif !impo
     table.body td.small-offset-1,
     table.body th.small-offset-1 {
       margin-left: 8.33333%!important;
-      Margin-left: 8.33333%!important
     }
     table.body td.small-offset-2,
     table.body th.small-offset-2 {
       margin-left: 16.66667%!important;
-      Margin-left: 16.66667%!important
     }
     table.body td.small-offset-3,
     table.body th.small-offset-3 {
       margin-left: 25%!important;
-      Margin-left: 25%!important
     }
     table.body td.small-offset-4,
     table.body th.small-offset-4 {
       margin-left: 33.33333%!important;
-      Margin-left: 33.33333%!important
     }
     table.body td.small-offset-5,
     table.body th.small-offset-5 {
       margin-left: 41.66667%!important;
-      Margin-left: 41.66667%!important
     }
     table.body td.small-offset-6,
     table.body th.small-offset-6 {
       margin-left: 50%!important;
-      Margin-left: 50%!important
     }
     table.body td.small-offset-7,
     table.body th.small-offset-7 {
       margin-left: 58.33333%!important;
-      Margin-left: 58.33333%!important
     }
     table.body td.small-offset-8,
     table.body th.small-offset-8 {
       margin-left: 66.66667%!important;
-      Margin-left: 66.66667%!important
     }
     table.body td.small-offset-9,
     table.body th.small-offset-9 {
       margin-left: 75%!important;
-      Margin-left: 75%!important
     }
     table.body td.small-offset-10,
     table.body th.small-offset-10 {
       margin-left: 83.33333%!important;
-      Margin-left: 83.33333%!important
     }
     table.body td.small-offset-11,
     table.body th.small-offset-11 {
       margin-left: 91.66667%!important;
-      Margin-left: 91.66667%!important
     }
   }
 </style>
