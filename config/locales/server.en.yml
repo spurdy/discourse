@@ -2423,6 +2423,7 @@ en:
         %{message}
 
     digest:
+      why: "A brief summary of %{site_link} since your last visit on %{last_seen_at}"
       since_last_visit: "Since your last visit"
       new_topics: "New Topics"
       unread_messages: "Unread Messages"
