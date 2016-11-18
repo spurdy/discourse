@@ -18,12 +18,12 @@ body, table, td, th, h1, h2, h3 {font-family: Helvetica, Arial, sans-serif !impo
   <%= @preheader_text %>
 </span>
 
-<header style="background-color:#<%= @header_bgcolor -%>;padding:30px;">
+<header style="background-color:#<%= @header_bgcolor -%>;padding:20px;">
   <a href="<%= Discourse.base_url %>" style="color:#<%= @header_color -%>;font-size:28px;text-decoration:none;">
   <%- if logo_url.blank? %>
     <center><%= SiteSetting.title %></center>
   <%- else %>
-    <img src="<%= logo_url %>" style="-ms-interpolation-mode:bicubic;clear:both;display:block;height:40px;margin:auto;max-width:100%;outline:0;text-decoration:none;width:auto;" alt="<%= SiteSetting.title %>">
+    <img src="<%= logo_url %>" style="-ms-interpolation-mode:bicubic;clear:both;display:block;height:40px;margin:auto;max-width:100%;outline:0;text-decoration:none;" alt="<%= SiteSetting.title %>">
   <%- end %>
   </a>
 </header>
@@ -46,101 +46,42 @@ body, table, td, th, h1, h2, h3 {font-family: Helvetica, Arial, sans-serif !impo
         <tbody>
           <tr>
             <td style="border-collapse:collapse!important;color:#0a0a0a;line-height:1.3;margin:0;padding:0;text-align:left;vertical-align:top;word-wrap:normal">
-              <div>
 
-<table class="row" style="padding:0;vertical-align:top;width:100%;border-spacing:0;">
-  <tbody>
-    <tr>
-      <td style="padding: 10px 0 0 0;">
-        <h3 class="text-center" style="color:#fff;font-size:28px;font-weight:400;margin:0 0 10px 0;text-align:center;border-collapse:collapse!important;">
-          <%=t 'user_notifications.digest.since_last_visit' %>
-        </h3>
-      </td>
-    </tr>
-  </tbody>
+<br/>
+<center style="color:#fff;font-size:28px;font-weight:400;"><%=t 'user_notifications.digest.since_last_visit' %></center>
+
+
+
+<table style="margin-bottom:20px;padding:0;vertical-align:top;width:100%">
+<tbody>
+  <tr>
+    <td style="text-align:center;color:#fff;font-size:3em;font-weight:400;width:33%;">
+      <strong><%= @new_topics_count -%></strong>
+    </td>
+    <td style="text-align:center;color:#fff;font-size:3em;font-weight:400;">
+      <strong><%= @unread_messages -%></strong>
+    </td>
+    <td style="text-align:center;color:#fff;font-size:3em;font-weight:400;width:33%;">
+      <strong><%= @unread_notifications -%></strong>
+    </td>
+  </tr>
+  <tr>
+    <td style="color:#fff;font-size:16px;font-weight:400;text-align:center;width:33%;">
+      <%=t 'user_notifications.digest.new_topics' %>
+    </td>
+    <td style="color:#fff;font-size:16px;font-weight:400;text-align:center;">
+      <%=t 'user_notifications.digest.unread_messages' %>
+    </td>
+    <td style="color:#fff;font-size:16px;font-weight:400;text-align:center;width:33%;">
+      <%=t 'user_notifications.digest.unread_notifications' %>
+    </td>
+  </tr>
+</tbody>
 </table>
 
-<table style="margin-bottom:20px;padding:0;text-align:left;vertical-align:top;width:100%" class="row">
-  <tbody>
-    <tr>
-      <th class="large-offset-1 small-3 large-3 columns first" style="margin:0;padding:0 8px 16px 81px;width:179px">
-        <table style="padding:0;vertical-align:top;width:100%">
-          <tbody>
-            <tr>
-              <th style="line-height:1.3;margin:0;padding:0;text-align:center">
-                <h1 class="text-center" style="color:#fff;font-size:3em;font-weight:400;line-height:1.3;margin:0;padding:0;text-align:center;word-wrap:normal">
-                  <strong><%= @new_topics_count -%></strong>
-                </h1>
-                <h4 class="text-center" style="color:#fff;font-size:16px;font-weight:400;line-height:1.3;margin:0 0 10px 0;padding:0;text-align:center;word-wrap:normal">
-                  <%=t 'user_notifications.digest.new_topics' %>
-                </h4>
-              </th>
-            </tr>
-          </tbody>
-        </table>
-      </th>
-      <th class="small-1 large-1 columns" style="margin:0;padding:0 8px 16px 8px;width:49px">
-        <table style="padding:0;width:100%">
-          <tbody><tr><th style="margin:0;padding:0;"></th></tr></tbody>
-        </table>
-      </th>
-      <th class="small-3 large-3 columns" style="margin:0;padding:0 8px 16px 8px;width:179px">
-        <table style="padding:0;vertical-align:top;width:100%">
-          <tbody>
-            <tr>
-              <th style="line-height:1.3;margin:0;padding:0;text-align:center;vertical-align:top;">
-                <h1 class="text-center" style="color:#fff;font-size:3em;font-weight:400;line-height:1.3;margin:0;padding:0;text-align:center;word-wrap:normal">
-                  <strong><%= @unread_messages -%></strong>
-                </h1>
-                <h4 class="text-center" style="color:#fff;font-size:16px;font-weight:400;line-height:1.3;margin:0 0 10px 0;padding:0;text-align:center;width:100%">
-                  <%=t 'user_notifications.digest.unread_messages' %>
-                </h4>
-              </th>
-            </tr>
-          </tbody>
-        </table>
-      </th>
-      <th class="small-1 large-1 columns" style="margin:0;padding:0 8px 16px 8px;width:49px">
-        <table style="padding:0;width:100%">
-          <tbody><tr><th style="margin:0;padding:0;"></th></tr></tbody>
-        </table>
-      </th>
-      <th class="small-3 large-3 columns" style="margin:0;padding:0 8px 16px 8px;width:179px">
-        <table style="padding:0;vertical-align:top;width:100%">
-          <tbody>
-            <tr>
-              <th style="line-height:1.3;margin:0;padding:0;text-align:center;">
-                <h1 class="text-center" style="color:#fff;font-size:3em;font-weight:400;line-height:1.3;margin:0;padding:0;text-align:center;word-wrap:normal">
-                  <strong><%= @unread_notifications -%></strong>
-                </h1>
-                <h4 class="text-center" style="color:#fff;font-size:16px;font-weight:400;line-height:1.3;margin:0 0 10px 0;padding:0;text-align:center;word-wrap:normal">
-                  <%=t 'user_notifications.digest.unread_notifications' %>
-                </h4>
-              </th>
-            </tr>
-          </tbody>
-        </table>
-      </th>
-      <th class="small-1 large-1 columns last" style="line-height:1.3;margin:0;padding:0 16px 16px 8px;width:49px">
-        <table style="padding:0;width:100%">
-          <tbody><tr><th style="margin:0;padding:0;"></th></tr></tbody>
-        </table>
-      </th>
-    </tr>
-  </tbody>
-</table>
+<center style="color:#fff;font-size:34px;font-weight:400;margin-bottom: 8px;"><%=t 'user_notifications.digest.popular_topics' %></center>
 
-<table class="row" style="padding:0;vertical-align:top;width:100%">
-  <tbody>
-    <tr>
-      <h1 class="text-center" style="color:#fff;font-size:34px;font-weight:400;line-height:1.3;margin:0;margin-bottom:10px;padding:0;text-align:center;word-wrap:normal">
-        <%=t 'user_notifications.digest.popular_topics' %>
-      </h1>
-    </tr>
-  </tbody>
-</table>
 
-              </div>
             </td>
           </tr>
         </tbody>
@@ -152,15 +93,15 @@ body, table, td, th, h1, h2, h3 {font-family: Helvetica, Arial, sans-serif !impo
 
 <% @popular_topics.each_with_index do |t, i| %>
 <!--   Beginning of Popular Topic   -->
-<table class="row" style="width:100%">
+<table style="width:100%">
   <tbody>
     <tr>
-      <th class="small-8 large-8 columns first" style="margin:0;padding:0 8px 16px 16px;text-align:left;vertical-align:top;width:75%">
+      <th style="margin:0;padding:0 8px 16px 16px;text-align:left;vertical-align:top;width:75%">
         <p style="color:#8f8f8f;line-height:1.3;margin: 20px 0 10px 0;">
           <%= category_badge(t.category, inline_style: true, absolute_url: true) %>
         </p>
       </th>
-      <th class="small-4 large-4 columns last" style="margin:0;padding: 0 16px 16px 8px;text-align:right;vertical-align:top;width:25%">
+      <th style="margin:0;padding: 0 16px 16px 8px;text-align:right;vertical-align:top;width:25%">
         <p class="text-right" style="color:#8f8f8f;line-height:1.3;margin:20px 0 10px 0;">
           <%= short_date(t.created_at) %>
         </p>
@@ -169,32 +110,32 @@ body, table, td, th, h1, h2, h3 {font-family: Helvetica, Arial, sans-serif !impo
   </tbody>
 </table>
 
-<table class="row" style="vertical-align:top;width:100%">
+<table style="vertical-align:top;width:100%">
   <tbody>
     <tr>
-      <th class="small-9 large-9 columns first" style="padding: 0 8px 16px 16px; text-align:left; width:80%;">
-        <h2 style="font-size:30px;font-weight:400;line-height:1.3;margin:0 0 10px 0;padding:0;word-wrap:normal">
+      <th style="padding: 0 8px 8px 16px; text-align:left; width:80%;">
+        <h2 style="font-size:24px;font-weight:400;line-height:1.3;margin:0 0 10px 0;padding:0;word-wrap:normal">
           <a href="<%= Discourse.base_url_no_prefix + t.relative_url %>" style="color:#2F70AC;font-weight:400;line-height:1.3;margin:0;padding:0;text-decoration:none">
             <strong><%= t.title -%></strong>
           </a>
         </h2>
       </th>
-      <th class="small-3 large-3 columns last" style="color:#0a0a0a;line-height:1.3;margin:0;padding:0 16px 16px 8px;text-align:center;width:20%">
+      <th style="color:#0a0a0a;line-height:1.3;margin:0;padding:0 16px 8px 8px;text-align:center;width:20%">
         <% if t.image_url.present? %>
-          <img src="<%= Discourse.base_url_no_prefix + t.image_url -%>" style="-ms-interpolation-mode:bicubic;clear:both;display:block;float:none;margin:auto;max-height:80px;max-width:100%;outline:0;text-align:center;text-decoration:none;width:auto" align="center" class="float-center">
+          <img src="<%= Discourse.base_url_no_prefix + t.image_url -%>" style="-ms-interpolation-mode:bicubic;clear:both;display:block;float:none;margin:auto;max-height:64px;max-width:100%;outline:0;text-align:center;text-decoration:none;" align="center">
         <% end %>
       </th>
     </tr>
   </tbody>
 </table>
 
-<table class="row" style="padding:0;position:relative;text-align:left;vertical-align:top;width:100%">
+<table style="padding:0;position:relative;text-align:left;vertical-align:top;width:100%">
   <tbody>
     <tr>
-      <th class="small-3 large-1 columns first" style="color:#0a0a0a;line-height:1.3;margin:0 auto;padding:0 8px 16px 16px;text-align:center;width:10%">
-        <img src="<%= t.user.small_avatar_url -%>" style="-ms-interpolation-mode:bicubic;border-radius:50%;clear:both;display:block;float:none;height:50px;width:50px;margin:0;max-width:100%;outline:0;text-align:center;text-decoration:none;" align="center" class="float-center">
+      <th style="color:#0a0a0a;line-height:1.3;margin:0 auto;padding:0 8px 0 16px;width:60px;">
+        <img src="<%= t.user.small_avatar_url -%>" style="-ms-interpolation-mode:bicubic;border-radius:50%;clear:both;display:block;float:none;height:50px;width:50px;margin:0;max-width:100%;outline:0;text-align:center;text-decoration:none;" align="center">
       </th>
-      <th class="small-9 large-10 columns last" style="color:#0a0a0a;padding:0 16px 16px 8px;text-align:left;width:90%">
+      <th style="color:#0a0a0a;padding:0 16px 0 8px;text-align:left;">
         <h6 style="color:inherit;font-size:18px;font-weight:400;line-height:1.3;margin:0;padding:0;word-wrap:normal;"><%= t.user.try(:username) -%></h6>
         <% if t.user.try(:name).present? %>
           <p style="color:#8f8f8f;line-height:1.3;margin:0 0 16px 0;padding:0;"><%= t.user.name -%></p>
@@ -205,10 +146,10 @@ body, table, td, th, h1, h2, h3 {font-family: Helvetica, Arial, sans-serif !impo
 </table>
 
 <%- if t.first_post.present? && !t.first_post.user_deleted %>
-<table style="border-bottom:1px solid #f3f3f3;padding:0;text-align:left;vertical-align:top;width:100%" class="row">
+<table style="border-bottom:1px solid #f3f3f3;padding:0;text-align:left;vertical-align:top;width:100%">
   <tbody>
     <tr>
-      <th class="small-12 large-12 columns first last" style="padding:0 16px 16px 16px;text-align:left;width:100%;font-weight:normal;">
+      <th style="padding:0 16px 16px 16px;text-align:left;width:100%;font-weight:normal;">
         <p style="color:#0a0a0a;line-height:1.3;margin:0 0 10px 0;padding:0;font-weight:200;">
           <%= email_excerpt(t.first_post.cooked) %>
         </p>
@@ -218,32 +159,25 @@ body, table, td, th, h1, h2, h3 {font-family: Helvetica, Arial, sans-serif !impo
 </table>
 <%- end %>
 
-<table class="row" style="padding:0;text-align:left;vertical-align:top;width:100%; margin-top:20px;">
+<table style="padding:0;text-align:left;vertical-align:top;width:100%; margin-top:20px;">
   <tbody>
     <tr style="vertical-align:top;">
-      <th class="small-3 large-1 columns first" style="padding:0 8px 16px 16px;text-align:left;width:10%">
-        <img src="<%= email_image_url 'heart.png' -%>" style="-ms-interpolation-mode:bicubic;clear:both;display:inline-block;float:left;height:20px;margin-right:10px;max-width:100%;opacity:.4;outline:0;text-decoration:none;width:auto">
-        <p style="color:#8f8f8f;float:left;line-height:1.3;margin:0;margin-bottom:10px;padding:0;text-align:left"><%= t.like_count -%></p>
+      <th style="padding:0 8px 16px 16px;text-align:left;white-space: nowrap;vertical-align: top;">
+        <img src="<%= email_image_url 'heart.png' -%>" style="-ms-interpolation-mode:bicubic;clear:both;display:inline-block;float:left;height:20px;margin:0;max-width:100%;opacity:.4;outline:0;text-decoration:none;width:auto">
+        <p style="color:#8f8f8f;float:left;line-height:1.3;margin:0 5px 10px 5px;padding:0;text-align:left"><%= t.like_count -%></p>
       </th>
-      <th class="small-3 large-1 columns" style="padding:0 8px 16px 8px;text-align:left;width:10%">
-        <img src="<%= email_image_url 'comment.png' -%>" style="-ms-interpolation-mode:bicubic;clear:none;display:inline-block;float:left;height:20px;margin-right:10px;max-width:100%;opacity:.4;outline:0;text-decoration:none;width:auto">
-        <p style="color:#8f8f8f;float:left;line-height:1.3;margin:0;margin-bottom:10px;padding:0;text-align:left"><%= t.posts_count - 1 -%></p>
+      <th style="padding:0 8px 16px 8px;text-align:left;white-space: nowrap;vertical-align: top;">
+        <img src="<%= email_image_url 'comment.png' -%>" style="-ms-interpolation-mode:bicubic;clear:none;display:inline-block;float:left;height:20px;margin:0;max-width:100%;opacity:.4;outline:0;text-decoration:none;width:auto">
+        <p style="color:#8f8f8f;float:left;line-height:1.3;margin:0 5px 10px 5px;padding:0;text-align:left"><%= t.posts_count - 1 -%></p>
       </th>
-      <th class="small-6 large-3 columns" style="padding:0 8px 16px 8px;text-align:left;width:20%">
+      <th style="padding:0 8px 16px 8px;text-align:left;white-space: nowrap;vertical-align: top;">
         <% t.posters_summary.each do |ps| %>
           <% if ps.user %>
-            <img src="<%= ps.user.small_avatar_url -%>" style="-ms-interpolation-mode:bicubic;border-radius:50%;clear:both;display:inline-block;height:20px;max-width:100%;outline:0;text-decoration:none;width:20px">
+            <img src="<%= ps.user.small_avatar_url -%>" style="-ms-interpolation-mode:bicubic;border-radius:50%;clear:both;display:inline-block;height:20px;width:20px;outline:0;text-decoration:none;">
           <% end %>
         <% end %>
       </th>
-      <th class="small-4 large-3 columns" style="padding:0 8px 16px 8px;text-align:left;width:30%">
-<!-- TODO
-        <a href="<%= Discourse.base_url_no_prefix + t.relative_url %>" style="color:#2199e8;float:right;font-weight:400;line-height:1.3;margin:0;padding:0;text-align:left;text-decoration:none">
-          <%=t 'user_notifications.digest.follow_topic' %>
-        </a>
--->
-      </th>
-      <th class="small-8 large-4 columns last" style="line-height:1.3;padding:0 16px 0 8px;text-align:right;width:30%">
+      <th style="line-height:1.3;padding:0 16px 0 8px;text-align:right;white-space: nowrap;vertical-align: top;">
         <a href="<%= Discourse.base_url_no_prefix + t.relative_url %>" style="width:100%;background-color:#2199e8;color:#fff;text-decoration:none;padding:8px 16px;white-space: nowrap;">
           <%=t 'user_notifications.digest.join_the_discussion' %>
         </a>
@@ -287,7 +221,7 @@ body, table, td, th, h1, h2, h3 {font-family: Helvetica, Arial, sans-serif !impo
 <table style="background-color: #f3f3f3; width: 100%;">
   <tr>
     <td>
-      <h1 class="text-center" style="font-size:34px;font-weight:400;line-height:1.3; padding: 60px 0 20px 0;text-align:center;">
+      <h1 style="font-size:34px;font-weight:400;line-height:1.3; padding: 30px 0 10px 0;text-align:center;">
         <%=t 'user_notifications.digest.popular_posts' %>
       </h1>
     </td>
@@ -296,53 +230,47 @@ body, table, td, th, h1, h2, h3 {font-family: Helvetica, Arial, sans-serif !impo
 
 <table class="body" style="width:100%;background:#f3f3f3;border-spacing:0;border-collapse:collapse!important;font-family:Helvetica,Arial,sans-serif;font-size:16px;font-weight:200;line-height:1.3;padding:0;text-align:left;vertical-align:top;">
   <tr>
-    <td style="width:5%;padding:0;">&nbsp;</td>
-    <td class="center" align="center" valign="top" style="width:90%;border-collapse:collapse!important;line-height:1.3;margin:0;padding:0;text-align:left;vertical-align:top;">
+    <td class="side-spacer" style="width:5%;padding:0;">&nbsp;</td>
+    <td align="center" valign="top" style="width:90%;border-collapse:collapse!important;line-height:1.3;margin:0;padding:0;text-align:left;vertical-align:top;">
 
 <% @popular_posts.each do |post| %>
 
 <!--   Beginning of Popular Post   -->
-<table class="row" style="width:100%;background:#fefefe;border-spacing:0;padding:0;text-align:left;vertical-align:top;">
+<table style="width:100%;background:#fefefe;border-spacing:0;padding:0;text-align:left;vertical-align:top;">
   <tbody>
     <tr>
-      <td class="small-12 large-12 columns first last" style="margin:0 auto;padding:16px;text-align:left;width:764px">
-        <p style="color:#0a0a0a;line-height:1.3;margin:0;margin-bottom:10px;padding:0;text-align:left; font-weight:200;">
-          <%= email_excerpt(post.cooked) %>
-        </p>
+      <td style="color:#0a0a0a;line-height:1.3;font-weight:200;padding:16px;text-align:left;width:100%;">
+        <%= email_excerpt(post.cooked) %>
       </td>
     </tr>
   </tbody>
 </table>
 
-<table style="border-spacing:0;background-color:#f3f3f3;padding:0;position:relative;text-align:left;vertical-align:top;width:100%" class="row">
+<table style="border-spacing:0;background-color:#f3f3f3;padding:0;text-align:left;vertical-align:top;width:100%">
   <tbody>
     <tr>
-      <td class="large-offset-1 small-11 large-12 columns first last" style="border-spacing:0;padding:0;color:#0a0a0a;float:right;line-height:1.3;margin:0 auto;padding:0 16px 16px 81px;text-align:left;width:764px">
-        <img src="<%= email_image_url 'right_triangle.png' -%>" style="-ms-interpolation-mode:bicubic;clear:both;display:block;height:20px;max-width:100%;outline:0;text-decoration:none;width:20px">
+      <td style="border-spacing:0;padding:0;color:#0a0a0a;line-height:1.3;padding:0 0 0 65px;text-align:left;">
+        <img src="<%= email_image_url 'right_triangle.png' -%>" style="-ms-interpolation-mode:bicubic;clear:both;display:block;height:20px;width:20px;outline:0;text-decoration:none;">
       </td>
     </tr>
   </tbody>
 </table>
 
-<table style="background-color:#f3f3f3;padding:0;position:relative;text-align:left;vertical-align:top;width:100%" class="row">
+<table style="background-color:#f3f3f3;padding:0;position:relative;text-align:left;vertical-align:top;width:100%">
   <tbody>
     <tr>
-      <th class="small-3 large-1 columns first" style="color:#0a0a0a;line-height:1.3;margin:0 auto;padding:0;padding-bottom:16px;padding-left:16px;padding-right:8px;text-align:left;width:49px">
-        <center style="min-width:17px;width:100%">
-          <img src="<%= post.user.small_avatar_url -%>" style="-ms-interpolation-mode:bicubic;border-radius:50%;clear:both;display:block;float:none;height:50px;margin:0 auto;max-width:100%;outline:0;text-align:center;text-decoration:none;width:50px" align="center" class="float-center">
-        </center>
+      <th style="padding:0 8px 8px 8px;text-align:left;width:60px;vertical-align:top;">
+        <img src="<%= post.user.small_avatar_url -%>" style="-ms-interpolation-mode:bicubic;border-radius:50%;clear:both;display:block;height:50px;width:50px;outline:0;">
       </th>
-      <th class="small-8 large-2 columns" style="color:#0a0a0a;line-height:1.3;margin:0 auto;padding:0;padding-bottom:16px;padding-left:8px;padding-right:8px;text-align:left;width:114px">
-        <h6 style="color:inherit;font-size:18px;font-weight:400;line-height:1.3;margin:0;margin-bottom:0;padding:0;text-align:left;word-wrap:normal"><%= post.user.username -%></h6>
-        <p style="color:#8f8f8f;line-height:1.3;margin:0;margin-bottom:10px;padding:0;text-align:left"><%= post.user.name -%></p>
+      <th style="color:#0a0a0a;line-height:1.3;padding:0 8px 8px 8px;text-align:left;">
+        <h6 style="color:inherit;font-size:16px;font-weight:400;margin:0;padding:0;text-align:left;word-wrap:normal;"><%= post.user.username -%></h6>
+        <p style="color:#8f8f8f;font-size:16px;line-height:1.3;margin:0;padding:0;text-align:left;"><%= post.user.name -%></p>
       </th>
-      <th class="small-6 large-5 columns" style="color:#0a0a0a;line-height:1.3;margin:0 auto;padding:0;padding-bottom:16px;padding-left:8px;padding-right:8px;text-align:left;width:309px">
-        <p style="color:#8f8f8f;line-height:1.3;margin:0;margin-bottom:10px;padding:0;text-align:left">
+      <th style="color:#0a0a0a;line-height:1.3;padding:0 8px 8px 8px;text-align:right;">
+        <p style="color:#8f8f8f;line-height:1.3;margin:0 0 10px 0;padding:0;text-align:right;">
           <%=t 'user_notifications.digest.from_topic_label' %>
           <a href="<%= post.full_url -%>" style="color:#2199e8;font-weight:400;line-height:1.3;margin:0;padding:0;text-align:left;text-decoration:none"><%= post.topic.title -%></a>
         </p>
-      </th>
-      <th class="small-6 large-3 columns last" style="line-height:1.3;margin:0 auto;padding:0;padding-bottom:16px;padding-left:8px;padding-right:16px;text-align:right;width:179px">
         <a href="<%= post.full_url -%>" style="width:100%;background-color:#2199e8;color:#fff;text-decoration:none;padding:8px 16px;white-space: nowrap;">
           <%=t 'user_notifications.digest.join_the_discussion' %>
         </a>
@@ -365,71 +293,64 @@ body, table, td, th, h1, h2, h3 {font-family: Helvetica, Arial, sans-serif !impo
 
 
 <% if @other_new_for_you.present? %>
+  <center style="font-size:34px;font-weight:400;margin-bottom: 8px;"><%=t 'user_notifications.digest.more_new' %></center>
 
-<table class="spacer" style="padding:0;width:100%">
-  <tbody><tr><td height="80px" style="border-collapse:collapse!important;line-height:80px;margin:0;mso-line-height-rule:exactly;padding:0;">&#xA0;</td></tr></tbody>
-</table>
-<h1 class="text-center" style="color:inherit;font-size:34px;font-weight:400;line-height:1.3;margin:0;margin-bottom:10px;padding:0;text-align:center;word-wrap:normal">
-  <%=t 'user_notifications.digest.more_new' %>
-</h1>
-<table class="spacer" style="padding:0;width:100%">
-  <tbody><tr><td height="40px" style="border-collapse:collapse!important;line-height:40px;margin:0;padding:0;">&#xA0;</td></tr></tbody>
-</table>
-
-<% end %>
 
 <%= digest_custom_html("above_popular_topics") %>
+
+<table style="padding:0;text-align:left;vertical-align:top;width:100%">
+  <tbody>
 
 <% @other_new_for_you.each do |t| %>
 
 <!--   Begin new topic  -->
-<table class="row" style="padding:0;position:relative;text-align:left;vertical-align:top;width:100%">
-  <tbody>
     <tr style="vertical-align:top;">
-      <th class="small-2 large-1 columns first" style="padding:20px 8px 0 16px;text-align:left;width:49px">
+      <td style="padding:20px 8px 0 16px;text-align:left;">
         <p style="background:#2F70AC;border-radius:50%;color:#fff;height:30px;line-height:30px;margin:0 0 10px 0;padding:0;text-align:center;width:30px">
           <%= t.user_data ? (t.highest_post_number - t.user_data.last_read_post_number) : t.highest_post_number %>
         </p>
-      </th>
-      <th class="small-6 large-6 columns" style="padding:24px 8px 16px 8px;text-align:left;">
+      </td>
+      <td style="padding:24px 8px 16px 8px;text-align:left;">
         <a href="#" style="color:#2F70AC;font-weight:400;line-height:1.3;margin:0;padding:0;text-decoration:none">
           <strong><%= t.title -%></strong>
         </a>
-      </th>
-      <th class="small-4 large-2 columns" style="padding:26px 8px 16px 8px;text-align:left;width:114px">
+      </td>
+      <td style="padding:26px 8px 16px 8px;text-align:left;">
         <p style="color:#0a0a0a;line-height:1.3;margin:0 0 10px 0;padding:0;text-align:left"><%= t.category.try(:name) -%></p>
-      </th>
-      <th class="small-6 large-4 columns" style="padding:24px 8px 16px 8px;text-align:left;width:244px">
-        <% t.posters_summary.each do |ps| %>
+      </td>
+      <td style="padding:24px 8px 16px 8px;text-align:left;">
+        <% t.posters_summary[0,2].each do |ps| %>
           <% if ps.user %>
-            <img src="<%= ps.user.small_avatar_url -%>" style="-ms-interpolation-mode:bicubic;border-radius:50%;clear:both;display:inline-block;height:20px;max-width:100%;outline:0;text-decoration:none;width:20px">
+            <img src="<%= ps.user.small_avatar_url -%>" style="height:20px;width:20px;margin:0 5px 5px 0;-ms-interpolation-mode:bicubic;border-radius:50%;clear:both;display:inline-block;outline:0;text-decoration:none;">
           <% end %>
         <% end %>
-      </th>
-      <th class="small-3 large-1 columns" style="padding:24px 8px 16px 8px;text-align:left;width:49px">
-        <img src="<%= email_image_url 'heart.png' -%>" style="-ms-interpolation-mode:bicubic;clear:both;display:inline-block;height:20px;max-width:100%;opacity:.4;outline:0;text-decoration:none;width:auto">
-        <p style="color:#8f8f8f;float:right;line-height:1.3;margin:0 0 10px 0;padding:0;text-align:left"><%= t.like_count -%></p>
-      </th>
-      <th class="small-3 large-1 columns last" style="padding:24px 16px 16px 8px;text-align:left;width:49px">
-        <img src="<%= email_image_url 'comment.png' -%>" style="-ms-interpolation-mode:bicubic;clear:both;display:inline-block;height:20px;max-width:100%;opacity:.4;outline:0;text-decoration:none;width:auto">
-        <p style="color:#8f8f8f;float:right;line-height:1.3;margin:0 0 10px 0;padding:0;text-align:left"><%= t.posts_count - 1 -%></p>
-      </th>
+      </td>
+      <td style="padding:24px 8px 16px 8px;text-align:left;">
+        <img src="<%= email_image_url 'heart.png' -%>" style="-ms-interpolation-mode:bicubic;clear:both;display:inline-block;float:left;height:20px;margin:0;max-width:100%;opacity:.4;outline:0;text-decoration:none;width:auto">
+        <p style="color:#8f8f8f;float:left;line-height:1.3;margin:0 5px 10px 5px;padding:0;text-align:left"><%= t.like_count -%></p>
+      </td>
+      <td style="padding:24px 16px 16px 8px;text-align:left;">
+        <img src="<%= email_image_url 'comment.png' -%>" style="-ms-interpolation-mode:bicubic;clear:none;display:inline-block;float:left;height:20px;margin:0;max-width:100%;opacity:.4;outline:0;text-decoration:none;width:auto">
+        <p style="color:#8f8f8f;float:left;line-height:1.3;margin:0 5px 10px 5px;padding:0;text-align:left"><%= t.posts_count - 1 -%></p>
+      </td>
     </tr>
-  </tbody>
-</table>
 
-<table class="spacer" style="padding:0;width:100%">
-  <tbody><tr><td height="10px" style="border-collapse:collapse!important;line-height:10px;margin:0;mso-line-height-rule:exactly;padding:0;">&#xA0;</td></tr></tbody>
-</table>
+    <tr><td colspan="6" height="10px" style="border-collapse:collapse!important;line-height:10px;margin:0;mso-line-height-rule:exactly;padding:0;">&#xA0;</td></tr>
+
 <!--   End new topic  -->
 
 <% end %>
 
+</tbody>
+</table>
+
 <%= digest_custom_html("below_popular_topics") %>
+
+<% end %>
 
 
     </td>
-    <td style="width:5%;padding:0;">&nbsp;</td>
+    <td class="side-spacer" style="width:5%;padding:0;">&nbsp;</td>
   </tr>
 </table>
 <style>
@@ -447,9 +368,6 @@ body, table, td, th, h1, h2, h3 {font-family: Helvetica, Arial, sans-serif !impo
     }
     table.body center {
       min-width: 0!important;
-    }
-    table.body .container {
-      width: 95%!important;
     }
     table.body .side-spacer {
       width: 2.5%!important;
