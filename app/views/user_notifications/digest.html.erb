@@ -18,15 +18,21 @@ body, table, td, th, h1, h2, h3 {font-family: Helvetica, Arial, sans-serif !impo
   <%= @preheader_text %>
 </span>
 
-<header style="background-color:#<%= @header_bgcolor -%>;padding:20px;">
+<table style="background-color:#<%= @header_bgcolor -%>;width:100%;">
+  <tr>
+    <td align="center" style="text-align: center;padding: 20px 0;">
+
   <a href="<%= Discourse.base_url %>" style="color:#<%= @header_color -%>;font-size:28px;text-decoration:none;">
   <%- if logo_url.blank? %>
-    <center><%= SiteSetting.title %></center>
+    <%= SiteSetting.title %>
   <%- else %>
-    <img src="<%= logo_url %>" style="-ms-interpolation-mode:bicubic;clear:both;display:block;height:40px;margin:auto;max-width:100%;outline:0;text-decoration:none;" alt="<%= SiteSetting.title %>">
+    <img src="<%= logo_url %>" height="40" style="-ms-interpolation-mode:bicubic;clear:both;display:block;height:40px;margin:auto;max-width:100%;outline:0;text-decoration:none;" alt="<%= SiteSetting.title %>">
   <%- end %>
   </a>
-</header>
+
+    </td>
+  </tr>
+</table>
 
 <table class="body" style="width:100%;background:#f3f3f3;padding:0;border-spacing:0;font-family:Helvetica,Arial,sans-serif;font-size:16px;font-weight:200;line-height:1.3;vertical-align:top;">
   <tr>
@@ -123,7 +129,7 @@ body, table, td, th, h1, h2, h3 {font-family: Helvetica, Arial, sans-serif !impo
 
       <% if t.image_url.present? %>
         <td style="color:#0a0a0a;line-height:1.3;margin:0;padding:0 16px 8px 8px;text-align:right;width:20%" align="right">
-          <img src="<%= Discourse.base_url_no_prefix + t.image_url -%>" style="-ms-interpolation-mode:bicubic;margin:auto;max-height:64px;max-width:100%;outline:0;text-align:right;text-decoration:none;">
+          <img src="<%= Discourse.base_url_no_prefix + t.image_url -%>" height="64" style="-ms-interpolation-mode:bicubic;margin:auto;max-height:64px;max-width:100%;outline:0;text-align:right;text-decoration:none;">
         </td>
       <% end %>
 
